@@ -467,6 +467,45 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBabyNameBabyName extends Struct.CollectionTypeSchema {
+  collectionName: 'baby_names';
+  info: {
+    displayName: 'Baby Name';
+    pluralName: 'baby-names';
+    singularName: 'baby-name';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    gender: Schema.Attribute.Enumeration<['boys', 'girls']> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::baby-name.baby-name'
+    > &
+      Schema.Attribute.Private;
+    meaning: Schema.Attribute.Text;
+    nakshatra: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    origin: Schema.Attribute.String;
+    published: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    zodiacSign: Schema.Attribute.String;
+  };
+}
+
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
@@ -1055,6 +1094,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::baby-name.baby-name': ApiBabyNameBabyName;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::seo-setting.seo-setting': ApiSeoSettingSeoSetting;
       'plugin::content-releases.release': PluginContentReleasesRelease;

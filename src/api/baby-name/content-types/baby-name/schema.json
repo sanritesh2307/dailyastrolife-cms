@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "baby_names",
+  "info": {
+    "singularName": "baby-name",
+    "pluralName": "baby-names",
+    "displayName": "Baby Name"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "gender": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "boys",
+        "girls"
+      ]
+    },
+    "zodiacSign": {
+      "type": "string"
+    },
+    "nakshatra": {
+      "type": "string"
+    },
+    "meaning": {
+      "type": "text"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "published": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  }
+}
